@@ -59,20 +59,29 @@
 }
 
 .auth-promo h1 {
-  max-width: 13ch;
+  // max-width: 13ch;
   margin: 1rem 0 0 0;
   color: var(--text-primary);
-  font-size: clamp(2rem, 5vw, 5rem);
+  font-size: clamp(2rem, 2.7rem, 5rem);
   font-weight: 850;
   line-height: 0.96;
   letter-spacing: 0;
 }
 
-.auth-promo h1 app-theme-button {
+.auth-promo h1 span app-theme-button {
   display: inline-flex;
   vertical-align: middle;
-  transform: translateY(-0.08em) scale(0.72);
+  transform: scale(0.70);
   transform-origin: center;
+}
+
+
+.auth-promo__day-night {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // gap: 0.5rem;
+  margin-left: 1rem;
 }
 
 .auth-promo__copy {
@@ -152,8 +161,7 @@
 
 .auth-promo__check--active {
   background: var(--radio-button-checked-bg);
-  box-shadow: 0 0 0 4px
-    color-mix(in srgb, var(--radio-button-checked-bg) 24%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--radio-button-checked-bg) 24%, transparent);
   transform: scale(1.05);
 }
 
@@ -176,7 +184,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(1.25rem, 4vw, 4rem);
+  padding: 0;
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--bg-secondary) 46%, transparent), transparent 38%),
     var(--bg-primary);
@@ -209,8 +217,8 @@
   }
 
   .auth-promo h1 {
-    max-width: 12ch;
-    font-size: clamp(2.6rem, 16vw, 4.8rem);
+    // max-width: 12ch;
+    font-size: clamp(2rem, 2.7rem, 5rem);
   }
 
   .auth-promo__preview {

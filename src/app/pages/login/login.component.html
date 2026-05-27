@@ -1,1 +1,59 @@
-<div>login</div>
+<form class="login-calendar">
+    <div class="login-calendar__rings" aria-hidden="true">
+        <span></span>
+        <p class="login-calendar__month">{{currentDate | date:'MMMM yyyy'}}</p>
+        <span></span>
+    </div>
+
+
+    <div class="login-calendar__week" aria-hidden="true">
+        <span [class.login-calendar__day--today]="(currentDate | date: 'EEE') === 'Mon'">Mon</span>
+        <span [class.login-calendar__day--today]="(currentDate | date: 'EEE') === 'Tue'">Tue</span>
+        <span [class.login-calendar__day--today]="(currentDate | date: 'EEE') === 'Wed'">Wed</span>
+        <span [class.login-calendar__day--today]="(currentDate | date: 'EEE') === 'Thu'">Thu</span>
+        <span [class.login-calendar__day--today]="(currentDate | date: 'EEE') === 'Fri'">Fri</span>
+        <span [class.login-calendar__day--today]="(currentDate | date: 'EEE') === 'Sat'">Sat</span>
+        <span [class.login-calendar__day--today]="(currentDate | date: 'EEE') === 'Sun'">Su</span>
+    </div>
+
+    <header class="login-calendar__header">
+        <h2>Welcome back</h2>
+        <p class="login-calendar__subtitle">Sign in and plan your next clear day.</p>
+    </header>
+    <div class="login-calendar__fields">
+        <mat-form-field appearance="fill" class="login-calendar__field">
+            <mat-label>Enter your user name</mat-label>
+            <input matInput name="username" autocomplete="username" [formControl]="username"
+                (blur)="updateUsernameErrorMessage()" required />
+            @if (username.invalid) {
+            <mat-error>{{ usernameErrorMessage() }}</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="login-calendar__field">
+            <mat-label>Enter your password</mat-label>
+            <input matInput name="password" autocomplete="current-password" [formControl]="password"
+                (blur)="updatePasswordErrorMessage()" required [type]="hidePassword() ? 'password' : 'text'" />
+            @if (password.invalid) {
+            <mat-error>{{ passwordErrorMessage() }}</mat-error>
+            }
+
+            <button matIconButton matSuffix type="button" (click)="togglePasswordVisibility($event)"
+                [attr.aria-label]="hidePassword() ? 'Show password' : 'Hide password'"
+                [attr.aria-pressed]="!hidePassword()">
+                <mat-icon class="mat-icon-password-eye"> {{ hidePassword() ? 'visibility_off' : 'visibility'
+                    }}</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+
+    <div class="login-calendar__actions">
+        <a href="/forgot-password">Forget password?</a>
+        <button type="submit">Login</button>
+    </div>
+
+    <p class="login-calendar__signup">
+        New here?
+        <a href="/create-account">Create account</a>
+    </p>
+</form>

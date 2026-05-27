@@ -1,0 +1,202 @@
+@use '@angular/material' as mat;
+
+.login-calendar {
+  position: relative;
+  width: 25rem;
+  padding: 4.25rem 1.35rem 1.35rem;
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(var(--bg-accent) 0 4.25rem, transparent 4.25rem),
+    var(--bg-primary);
+  color: var(--text-primary);
+  box-shadow: 0 1.25rem 3.5rem color-mix(in srgb, #000 13%, transparent);
+  overflow: hidden;
+}
+
+.login-calendar::before {
+  content: "";
+  position: absolute;
+  inset: 4.25rem 0 auto;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.login-calendar__rings {
+  position: absolute;
+  top: 1rem;
+  left: 1.35rem;
+  right: 1.35rem;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.login-calendar__rings span {
+  width: 0.8rem;
+  height: 2.35rem;
+  border-radius: 999px;
+  background: var(--bg-secondary);
+  box-shadow: inset 0 0 0 1px var(--border-color);
+}
+
+.login-calendar__header {
+  padding-bottom: 1.1rem;
+}
+
+.login-calendar__month {
+  width: fit-content;
+  margin: 0 0 0.8rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  color: var(--text-tertiary);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.login-calendar h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(1.9rem, 5vw, 2.45rem);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.login-calendar__subtitle {
+  margin: 0.7rem 0 0;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.login-calendar__week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.45rem;
+  margin: 1.4rem 0;
+}
+
+.login-calendar__week span {
+  min-height: 3.4rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 0.65rem;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.login-calendar__week .login-calendar__day--today {
+  background: var(--bg-accent);
+  color: var(--text-secondary);
+  box-shadow: 0 0.75rem 1.75rem color-mix(in srgb, var(--bg-accent) 34%, transparent);
+}
+
+.login-calendar__fields {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.login-calendar__field {
+  width: 100%;
+  --mdc-icon-button-icon-color: var(--text-secondary);
+
+  @include mat.form-field-overrides((
+    filled-container-shape: 0.7rem,
+    container-height: 3.55rem,
+    container-vertical-padding: 0.9rem,
+    filled-container-color: var(--bg-secondary),
+    filled-hover-active-indicator-color: var(--bg-accent),
+    filled-focus-active-indicator-color: var(--bg-accent),
+    filled-active-indicator-color: var(--border-color),
+    filled-active-indicator-height: 1px,
+    filled-focus-active-indicator-height: 2px,
+    filled-label-text-color: var(--text-secondary),
+    filled-hover-label-text-color: var(--text-primary),
+    filled-focus-label-text-color: var(--text-primary),
+    filled-input-text-color: var(--text-primary),
+    filled-input-text-placeholder-color: var(--text-tertiary),
+    filled-caret-color: var(--bg-accent),
+    error-text-color: #d85c5c,
+    filled-error-label-text-color: #d85c5c,
+    filled-error-active-indicator-color: #d85c5c,
+  ));
+
+}
+
+.mat-icon-password-eye {
+  color: var(--text-secondary);
+}
+
+.login-calendar__actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.9rem;
+  align-items: center;
+  margin-top: 1.1rem;
+}
+
+.login-calendar a {
+  color: var(--text-secondary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.login-calendar a:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.login-calendar__actions button {
+  min-height: 3rem;
+  padding: 0 1.35rem;
+  border: 0;
+  border-radius: 0.7rem;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.login-calendar__actions button:hover {
+  transform: translateY(-1px);
+}
+
+.login-calendar__signup {
+  margin: 1.25rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.login-calendar__signup a {
+  color: var(--text-primary);
+}
+
+@media (max-width: 440px) {
+  .login-calendar {
+    padding-inline: 1rem;
+  }
+
+  .login-calendar__week {
+    gap: 0.3rem;
+  }
+
+  .login-calendar__week span {
+    min-height: 2.9rem;
+    font-size: 0.68rem;
+  }
+
+  .login-calendar__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .login-calendar__actions button {
+    width: 100%;
+  }
+}
