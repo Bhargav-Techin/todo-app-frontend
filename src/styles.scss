@@ -1,69 +1,88 @@
-
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+// ==========================================
+// Angular Material 3 Setup
+// ==========================================
 html {
-  @include mat.theme((
-    color: (
-      primary: mat.$rose-palette,
-      tertiary: mat.$red-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
+  @include mat.theme((color: (primary: mat.$violet-palette, // Mapped to your lavender/petal tones
+        tertiary: mat.$rose-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    ));
 }
 
-body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
-  margin: 0;
-}
+// ==========================================
+// Light Theme Palette (Using your exact variables)
+// ==========================================
 .light {
-  --bg-primary: #ffaa00;
-  --bg-secondary: #EFE9E3;
-  --bg-tertiary: #D9CFC7;
-  --bg-accent: #C9B59C;
-  --text-primary: #2c2c2c;
-  --text-secondary: #5a5a5a;
-  --text-tertiary: #8f8b86;
-  --border-color: #D9CFC7;
-  --overlay: #ffffff1f;
+  // Backgrounds
+  --bg-primary: #FCF8F8; // $lavender-veil
+  --bg-secondary: #F5F5F0; // $petal-frost F5F5F0
+  --bg-tertiary: #F9DFDF; // $soft-blush
+  --bg-accent: #F5AFAF; // $frosted-mint-2 (Cleaner background contrast)
+
+  // Typography & UI elements
+  --text-primary: #021A54; // Deep ink purple for strong contrast on lavender
+  --text-secondary: #16476A; // $frosted-mint (used cleanly as an accent text/highlight)
+  --text-tertiary: #5459AC; // Slate lavender for secondary text
+  --border-color: #FDACAC; // Border color matching the lavender base
+  --overlay: rgba(255, 255, 255, 0.3);
+
+  //card
+  --card-bg-primary: #FBF5DD; // Pure white for cards to pop against the soft backgrounds
+  --card-bg-secondary: #F9F9F9; // Very light gray for subtle card differentiation
+  --card-bg-accent: #c2f1ee; // Accent color for card highlights and interactive elements
+
+  //radio button
+  --radio-button-bg: #F5AFAF; // Using the frosted mint 2 for radio button background
+  --radio-button-checked-bg: #FF6363; // Accent color for checked radio button
+  --radio-button-border: #FDACAC; // Border color for radio button
 }
 
+// ==========================================
+// Dark Theme Palette (Compatible Dark Match)
+// ==========================================
 .dark {
-  --bg-primary: #1c1b1a;
-  --bg-secondary: #2a2725;
-  --bg-tertiary: #3a3530;
-  --bg-accent: #C9B59C;
-  --text-primary: #F9F8F6;
-  --text-secondary: #EFE9E3;
-  --text-tertiary: #D9CFC7;
-  --border-color: #3a3530;
-  --overlay: #00000040;
+  // Backgrounds: Shifting from light warm pastels to deep, moody ink-blues.
+  // This creates a sleek "dark mode" that isn't just boring black or gray.
+  --bg-primary: #000000; // Deep midnight navy (inspired by your light mode text)
+  --bg-secondary: #212121; // Slightly elevated dark navy for subtle contrast
+  --bg-tertiary: #1C352D; // Lighter slate-navy for depth
+  --bg-accent: #1C352D; // A deep, dusky rose shadow (dark counterpart to #F5AFAF)
+
+  // Typography & UI elements: Reusing your light backgrounds as text for perfect harmony.
+  --text-primary: #FCF8F8; // Crisp, warm white (your light bg-primary)
+  --text-secondary: #E8D5D5; // Soft dusty rose for secondary readability without eye strain
+  --text-tertiary: #8BA0B5; // Muted cool gray-blue for disabled or tertiary text
+  --border-color: #2A344D; // Clean, subtle structural border
+  --overlay: rgba(0, 0, 0, 0.6);
+
+  // Cards: Re-engineered for the ultimate Deep Rose/Velvet palette
+  --card-bg-primary: #000c24; // Rich, deep dark chocolate-rose (elevates perfectly over your #140C0E background)
+  --card-bg-secondary: #001020; // Elegant muted burgundy (ideal for hover states or nested inner blocks)
+  --card-bg-accent: #2e3a52; // Luxury deep black-cherry (creates a gorgeous, high-end accent container)
+  // Radio Buttons: Keeping the vibrant accents but giving them a dark mode resting state.
+  --radio-button-bg: #F5AFAF; // Using the frosted mint 2 for radio button background
+  --radio-button-checked-bg: #FF6363; // Accent color for checked radio button
+  --radio-button-border: #FDACAC; // Border color for radio button
+}
+
+// ==========================================
+// Global Reset & Application Styling
+// ==========================================
+html,
+body {
+  height: 100%;
 }
 
 body {
+  margin: 0;
+  color-scheme: light dark;
+
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  margin: 0;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

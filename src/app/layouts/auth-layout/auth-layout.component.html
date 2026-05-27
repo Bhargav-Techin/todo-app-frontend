@@ -1,3 +1,35 @@
 <div class="auth-layout">
-  <router-outlet></router-outlet> 
+  <section class="auth-promo" aria-label="TaskFlow introduction">
+    <div class="auth-promo__content">
+      <p class="auth-promo__eyebrow">Todo Quest</p>
+      <h1>Track & Organise Your Day<app-theme-button />Night</h1>
+      <p class="auth-promo__copy">
+        Capture ideas, organize priorities, and come back to a calmer plan whenever your day changes.
+      </p>
+
+      <div class="auth-promo__preview" aria-hidden="true">
+        <div class="auth-promo__preview-header">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        @for (task of tasks; track $index) {
+        <div class="auth-promo__task" [class.auth-promo__task--active]="activeTask === $index"
+          (click)="activeTask = $index">
+          <span class="auth-promo__check" [class.auth-promo__check--active]="activeTask === $index"></span>
+          <div>
+            <strong>{{ task.title }}</strong>
+            <small>{{ task.subtitle }}</small>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="auth-panel" aria-label="Authentication form">
+    <div class="auth-panel__surface">
+      <router-outlet />
+    </div>
+  </section>
 </div>
