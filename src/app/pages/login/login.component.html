@@ -48,12 +48,12 @@
     </div>
 
     <div class="login-calendar__actions">
-        <a href="/forgot-password">Forget password?</a>
-        <button type="submit">Login</button>
+        <a routerLink="/forgot-password">Forget password?</a>
+        <button type="submit" [disabled]="isFormInvalid()">Login</button>
     </div>
 
     <p class="login-calendar__signup">
         New here?
-        <a href="/create-account">Create account</a>
+        <a routerLink="/register">Create account</a>
     </p>
 </form>

@@ -1,0 +1,116 @@
+<form class="login-calendar register-calendar">
+    <div class="login-calendar__rings" aria-hidden="true">
+        <span></span>
+        <p class="login-calendar__month">{{currentDate | date:'MMMM yyyy'}}</p>
+        <span></span>
+    </div>
+
+    <header class="login-calendar__header">
+        <h2>Create account</h2>
+        <p class="login-calendar__subtitle">Start your task calendar with a few details.</p>
+    </header>
+
+    <div class="login-calendar__fields">
+        <div class="avatar-upload-wrapper">
+            <span class="avatar-title">Profile image <small>(optional)</small></span>
+            <label class="register-calendar__upload">
+                <input type="file" accept="image/png,image/jpeg,image/jpg" (change)="onProfileImageChange($event)"
+                    class="avatar-input" />
+
+                @if (profileImagePreview()) {
+                <img [src]="profileImagePreview()" alt="Profile Preview" class="avatar-img-preview" />
+                } @else {
+                <div class="avatar-placeholder">
+                    <span class="upload-icon">+</span>
+                    <small>Upload</small>
+                </div>
+                }
+            </label>
+
+            @if (profileImageName()) {
+            <span class="avatar-filename">{{ profileImageName() }}</span>
+            } @else {
+            <span class="avatar-hint">PNG, JPG under 500KB</span>
+            }
+
+            @if (profileImageErrorMessage()) {
+            <p class="register-calendar__error">{{ profileImageErrorMessage() }}</p>
+            }
+        </div>
+        <mat-form-field appearance="fill" class="login-calendar__field">
+            <mat-label>Full name</mat-label>
+            <input matInput name="name" autocomplete="name" [formControl]="name" (blur)="updateNameErrorMessage()"
+                required />
+            @if (name.invalid) {
+            <mat-error>{{ nameErrorMessage() }}</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="login-calendar__field">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" name="email" autocomplete="email" [formControl]="email"
+                (blur)="updateEmailErrorMessage()" required />
+            @if (email.invalid) {
+            <mat-error>{{ emailErrorMessage() }}</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="login-calendar__field">
+            <mat-label>Username</mat-label>
+            <input matInput name="username" autocomplete="username" [formControl]="username"
+                (blur)="updateUsernameErrorMessage()" required />
+            @if (username.invalid) {
+            <mat-error>{{ usernameErrorMessage() }}</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="login-calendar__field">
+            <mat-label>Enter your password</mat-label>
+            <input matInput name="password" autocomplete="current-password" [formControl]="password" required
+                [type]="hidePassword() ? 'password' : 'text'" />
+
+            <button matIconButton matSuffix type="button" (click)="togglePasswordVisibility($event)"
+                [attr.aria-label]="hidePassword() ? 'Show password' : 'Hide password'"
+                [attr.aria-pressed]="!hidePassword()">
+                <mat-icon class="mat-icon-password-eye"> {{ hidePassword() ? 'visibility_off' : 'visibility'
+                    }}</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <ul class="register-calendar__password-rules" aria-label="Password requirements">
+            <li [class.register-calendar__rule--valid]="hasValidPasswordLength()">Password length 8-72 characters</li>
+            <li [class.register-calendar__rule--valid]="hasUppercaseLetter()">Include one capital letter</li>
+            <li [class.register-calendar__rule--valid]="hasLowercaseLetter()">Include one small letter</li>
+            <li [class.register-calendar__rule--valid]="hasNumber()">Include one number</li>
+            <li [class.register-calendar__rule--valid]="hasSpecialCharacter()">Include one special character</li>
+            <li [class.register-calendar__rule--valid]="usesAllowedPasswordCharacters()">Use only allowed password
+                characters</li>
+        </ul>
+
+        <mat-form-field appearance="fill" class="login-calendar__field">
+            <mat-label>Confirm password</mat-label>
+            <input matInput name="confirmPassword" autocomplete="new-password" [formControl]="confirmPassword" required
+                [type]="hideConfirmPassword() ? 'password' : 'text'" />
+
+            @if (confirmPassword.touched && !passwordsMatch()) {
+            <mat-error>Passwords must match</mat-error>
+            }
+
+            <button matIconButton matSuffix type="button" (click)="toggleConfirmPasswordVisibility($event)"
+                [attr.aria-label]="hideConfirmPassword() ? 'Show password' : 'Hide password'"
+                [attr.aria-pressed]="!hideConfirmPassword()">
+                <mat-icon class="mat-icon-password-eye"> {{ hideConfirmPassword() ? 'visibility_off' : 'visibility'
+                    }}</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+
+    <div class="login-calendar__actions">
+        <button type="submit" [disabled]="isFormInvalid()">Create</button>
+    </div>
+
+    <p class="login-calendar__signup">
+        Already have an account?
+        <a routerLink="/login">Login</a>
+    </p>
+</form>

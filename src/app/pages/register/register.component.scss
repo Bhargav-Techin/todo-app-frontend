@@ -1,0 +1,130 @@
+.register-calendar {
+  padding-bottom: 1.1rem;
+}
+
+// Centering layout wrapper
+.avatar-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.avatar-title {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  // margin-bottom: 0.2rem; // Gives a tiny breathing space above the circle
+
+  small {
+    color: var(--text-tertiary);
+    font-weight: 500;
+    font-size: 0.75rem;
+    margin-left: 0.15rem;
+  }
+}
+
+// The core circle button layout
+.register-calendar__upload {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 2px dashed var(--border-color);
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; // Ensures the image doesn't bleed out of the circle
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    border-color: var(--radio-button-checked-bg);
+    background: var(--card-bg-secondary);
+  }
+}
+
+// Completely hide the native file browser input box 
+.avatar-input {
+  display: none;
+}
+
+// The resulting image layout
+.avatar-img-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // Keeps aspect ratio intact instead of squishing it
+}
+
+// Placeholder inner styling
+.avatar-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-tertiary);
+
+  .upload-icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  small {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+}
+
+// Descriptive metadata strings
+.avatar-hint {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.avatar-filename {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; // Clean crop with "..." if filename is overly long
+}
+
+.register-calendar__password-rules {
+  display: grid;
+  gap: 0.35rem;
+  margin: -0.35rem 0 0.25rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.7rem;
+  background: var(--bg-secondary);
+  color: #d85c5c;
+  font-size: 0.78rem;
+  font-weight: 700;
+  list-style: none;
+}
+
+.register-calendar__password-rules li::before {
+  content: "x";
+  display: inline-block;
+  width: 1rem;
+}
+
+.register-calendar__password-rules .register-calendar__rule--valid {
+  color: #2f9e66;
+}
+
+.register-calendar__password-rules .register-calendar__rule--valid::before {
+  content: "+";
+}
+
+
+
+.register-calendar__error {
+  margin: -0.1rem 0 0;
+  color: #d85c5c;
+  font-size: 0.78rem;
+}

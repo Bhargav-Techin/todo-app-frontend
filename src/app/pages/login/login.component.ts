@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { RouterLink } from '@angular/router';
 import { merge } from 'rxjs';
 
 @Component({
@@ -18,6 +19,7 @@ import { merge } from 'rxjs';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    RouterLink
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -58,6 +60,10 @@ export class LoginComponent {
   togglePasswordVisibility(event: MouseEvent): void {
     this.hidePassword.set(!this.hidePassword());
     event.stopPropagation();
+  }
+
+  isFormInvalid(): boolean {
+    return this.username.invalid || this.password.invalid;
   }
 
 }
